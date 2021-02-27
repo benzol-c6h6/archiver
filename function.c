@@ -16,7 +16,6 @@ int archive(char *dir_name, int arch_file, int nesting)
     {
         printf("Не удалось открыть папку %s\n", dir_name);
         perror("");
-        closedir(dir);
         return ERR_CODE;
     }
     
@@ -165,6 +164,7 @@ int unarchive(char *archiver_name, char *dir_name)
             printf("Ошибка чтения из файла\n");
             perror("");
             closedir(dir);
+            free(name);
             close(arch_file);
             return ERR_CODE;
         }
@@ -177,6 +177,7 @@ int unarchive(char *archiver_name, char *dir_name)
             {
                 closedir(dir);
                 close(arch_file);
+                free(name);
                 return ERR_CODE;
             }
         }
@@ -187,6 +188,7 @@ int unarchive(char *archiver_name, char *dir_name)
             {
                 closedir(dir);
                 close(arch_file);
+                free(name);
                 return ERR_CODE;
             }
         }
@@ -199,6 +201,7 @@ int unarchive(char *archiver_name, char *dir_name)
             {
                 closedir(dir);
                 close(arch_file);
+                free(name);
                 return ERR_CODE;
             }
         }
